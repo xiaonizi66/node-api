@@ -5,7 +5,6 @@ const router = express.Router();
 
 // 解析参数
 const bodyParser = require('body-parser')
-let login = true;
 // json请求
 app.use(bodyParser.json())
 // 表单请求
@@ -29,8 +28,8 @@ function Res ({ code = 200, msg = '', data = {} }) {
     this.msg = msg;
     this.data = data;
 }
-function Result (result) {
-    return new Res(result)
+function resJson (_res, result) {
+    return _res.json(new Res(result))
 }
 // 断线重连机制
 function repool() {
@@ -50,4 +49,4 @@ function repool() {
         })
     })
 }
-module.exports = { app, pool, Result, router }
+module.exports = { app, pool, router, resJson }

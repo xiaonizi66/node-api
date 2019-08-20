@@ -13,6 +13,7 @@ app.all('/', (req, res) => {
         pool.releaseConnection(conn) // 释放连接池，等待别的连接使用
     })
 })
+
 app.use('/user', user)
 app.listen(8088, () => {
     console.log('服务启动','localhost:8088')
